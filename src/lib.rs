@@ -1,4 +1,6 @@
 pub mod solution {
+    use std::f32;
+
     pub fn one() -> u32 {
         let max = 1000;
         let mut sum = 0;
@@ -70,6 +72,44 @@ pub mod solution {
 
         prime
     }
+
+    pub fn four(lower: u32, upper: u32) -> u32 {
+        let mut biggest_palindrome = 0;
+
+        for outer in lower..=upper {
+            for inner in lower..=upper {
+                let test = outer * inner;
+                if test < biggest_palindrome {
+                    continue;
+                }
+                
+                if is_palindrome(test) {
+                    biggest_palindrome = test;
+                }
+            }
+        }
+
+        biggest_palindrome
+    }
+
+    pub fn is_palindrome(number: u32) -> bool {
+        let mut test = number;
+        let mut palindrome = 0;
+        let mut magnitude = (test as f32).log10().floor() as u32;
+
+        while test > 0 {
+            palindrome += (test % 10) * 10u32.pow(magnitude);
+            test /= 10;
+
+            magnitude = if magnitude > 1 {
+                magnitude - 1
+            } else {
+                0
+            };
+        }
+
+        number == palindrome
+    }
 }
 
 #[cfg(test)]
@@ -108,5 +148,25 @@ mod tests {
         assert_eq!(solution::is_prime(405), false);
         assert_eq!(solution::is_prime(558), false);
         assert_eq!(solution::is_prime(674), false);
+    }
+
+    #[test]
+    fn test_four() {
+        assert_eq!(solution::four(10, 99), 9009);
+    }
+
+    #[test]
+    fn test_is_palindrome() {
+        // Palindromes
+        assert_eq!(solution::is_palindrome(191), true);
+        assert_eq!(solution::is_palindrome(5665), true);
+        assert_eq!(solution::is_palindrome(98789), true);
+
+        // Non-palindromes
+        assert_eq!(solution::is_palindrome(1234), false);
+        assert_eq!(solution::is_palindrome(4343), false);
+        assert_eq!(solution::is_palindrome(56789), false);
+        assert_eq!(solution::is_palindrome(456754), false);
+        assert_eq!(solution::is_palindrome(778899), false);
     }
 }

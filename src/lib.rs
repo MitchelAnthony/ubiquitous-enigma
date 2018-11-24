@@ -1,3 +1,5 @@
+extern crate primal_sieve;
+
 pub mod helper;
 
 pub mod solution {

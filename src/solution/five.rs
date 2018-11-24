@@ -1,5 +1,7 @@
-pub fn run(min: u32, max: u32) -> u32 {
-    
+use primal_sieve;
+
+pub fn run(max: usize) -> usize {
+    let sieve = primal_sieve::Sieve::new(max);
 
     0
 }
@@ -10,7 +12,7 @@ mod tests {
 
     #[test]
     fn test_five() {
-        assert_eq!(run(1, 10), 2520);
-        assert_eq!(run(1, 20), 232_792_560);
+        assert_eq!(run(10), 2520);
+        assert_eq!(run(20), 232_792_560);
     }
 }

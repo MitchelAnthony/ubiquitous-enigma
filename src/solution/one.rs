@@ -7,7 +7,7 @@ pub fn run(max: u32) -> u32 {
         }
     }
 
-    println!("The sum of all the multiples of 3 or 5 below {} is {}", max, sum); 
+    // println!("The sum of all the multiples of 3 or 5 below {} is {}", max, sum); 
 
     sum
 }
@@ -19,5 +19,7 @@ mod tests {
     #[test]
     fn test_one() {
         assert_eq!(run(1000), 233_168);
+        assert_eq!(run(2500), 1_457_918);
+        assert_eq!(run(4999), 5_829_168);
     }
 }

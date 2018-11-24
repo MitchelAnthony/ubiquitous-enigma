@@ -13,7 +13,7 @@ pub fn run(max: u32) -> u32 {
         second = new;
     }
 
-    println!("The sum of all the even-valued terms is {}", sum);
+    // println!("The sum of all the even-valued terms is {}", sum);
 
     sum
 }

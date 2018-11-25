@@ -23,6 +23,10 @@ mod tests {
     #[test]
     fn test_nine() {
         assert_eq!(run(12), 60);
+        assert_eq!(run(30), 780);
+        assert_eq!(run(90), 14_760);
+        assert_eq!(run(154), 120_120);
+        assert_eq!(run(684), 3_779_100);
         assert_eq!(run(1000), 31_875_000);
     }
 }

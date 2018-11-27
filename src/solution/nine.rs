@@ -1,6 +1,7 @@
 pub fn run(sum: usize) -> usize {
     let mut product = 1;
 
+    // Use Euclid's formula to generate triples
     for n in 1..sum {
         for m in n..(sum + 1) {
             let a = (m * m) - (n * n);
@@ -9,6 +10,7 @@ pub fn run(sum: usize) -> usize {
 
             if a + b + c == sum {
                 product = a * b * c;
+                break;
             }
         }
     }

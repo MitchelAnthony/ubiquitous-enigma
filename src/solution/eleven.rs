@@ -32,44 +32,24 @@ fn parse_grid(grid: &mut Vec<Vec<usize>>) {
 }
 
 fn find_greatest_adjecent_product(grid: &Vec<Vec<usize>>, count: usize, x: usize, y: usize) -> usize {
-    let mut product = 1;
+    use std::cmp::max;
+
     let count = count - 1;
-    
-    // Check horizontal
-    for i in 0..=count {
-        product *= grid[x + i][y];
-    }
-
-    // Check vertical
+    let mut horizontal = 1;
     let mut vertical = 1;
-    for i in 0..=count {
-        vertical *= grid[x][y + i];
-    }
-    if vertical > product {
-        product = vertical;
-    }
-
-    // Check diagonal left -> right
     let mut diagonal_right = 1;
-    for i in 0..=count {
-        diagonal_right *= grid[x + i][y + i];
-    }
-    if diagonal_right > product {
-        product = diagonal_right;
-    }
-
-    // Check diagonal right -> left
     let mut diagonal_left = 1;
-    if x as isize - count as isize >= 0 {
-        for i in 0..=count {
+    for i in 0..=count {
+        horizontal *= grid[x + i][y];
+        vertical *= grid[x][y + i];
+        diagonal_right *= grid[x + i][y + i];
+        
+        if x as isize - count as isize >= 0 {
             diagonal_left *= grid[x - i][y + i];
         }
-        if diagonal_left > product {
-            product = diagonal_left;
-        }
     }
     
-    product
+    max(horizontal, max(vertical, max(diagonal_right, diagonal_left)))
 }
 
 #[cfg(test)]

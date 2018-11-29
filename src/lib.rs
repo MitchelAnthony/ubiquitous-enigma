@@ -13,4 +13,5 @@ pub mod solution {
     pub mod eight;
     pub mod nine;
     pub mod ten;
+    pub mod eleven;
 }
